@@ -1,0 +1,11 @@
+
+exploration "base" behaviours
+
+
+movement between tiles
+
+eg. attribute sense of direction-> there is a slight chance, that in building the internal map 
+a mistake is made, so that internal map and world map differ
+
+player spells (EVENTS): "pings", placing flags, placing beacon to indirectly influence minion movement (trigger EVENTS the minion ki can react to, come here EVENTS)
+Just a coarse, indirect kind of control

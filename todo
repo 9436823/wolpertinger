@@ -1,0 +1,29 @@
+-- add fow
+-- add display to ui method (interfacing those objects...)
+-- add better tile data structure, e.g. for finding neighbours
+ 
+-- seperate loog&feel and content
+
+
+
+UI:
+-define easy to use interface
+
+
+DATASTRUCTURES:
+-extend the heap with decrease key method, o(c) contains() method...
+
+
+MINION:
+-
+
+MAP:
+-introduce a better data structure (based on tile object rather than on
+multiple datastructures distributed through the whole class)
+-refine the map interface for movement, object placement, navigation
+-Add hexagonal tile support
+-add support for non rectangular maps
+-add support for dynamic maps
+-add support for animated tiles (tiled parsing)
+-living map
+-add true multi layer support

@@ -1,4 +1,4 @@
-local heap = require("heap")
+local heap = require("libs.heap.heap")
 navigator = {}
 local navigator_mt = {__index = navigator}
 

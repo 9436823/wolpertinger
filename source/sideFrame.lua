@@ -5,7 +5,7 @@
   @module sideFrame
 --]]
 require("restrictValueProxy")
-
+--widget = require("widget")
 sideFrame = {}
 local sideFrame_mt = {__index = sideFrame}
 

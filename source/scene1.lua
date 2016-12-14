@@ -1,5 +1,7 @@
 local composer = require( "composer" )
 local widget = require("widget")
+widget.setTheme("widget_theme_android_holo_dark")
+
 require("minion")
 require("gamestate")
 require("isomap")
@@ -27,7 +29,7 @@ function scene:create( event )
     
     --myUi:hide(true)
     
-    local myHexmap = hexmap.new("hexagonal_debug")
+    local myHexmap = hexmap.new("map_source.hexagonal_debug")
     local myUi = ui.new("scene 1 ui", myHexmap)
     
     myHexmap:insertIntoGroup(myUi.map)

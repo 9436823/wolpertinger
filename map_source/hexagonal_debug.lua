@@ -21,7 +21,7 @@ return {
       tileheight = 18,
       spacing = 0,
       margin = 0,
-      image = "../../../Downloads/tiled-master/tiled-master/examples/hexmini.png",
+      image = "map_tiles/hexmini.png",
       imagewidth = 106,
       imageheight = 72,
       tileoffset = {

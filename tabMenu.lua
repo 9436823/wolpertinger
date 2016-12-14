@@ -1,13 +1,18 @@
+--[[--- tabMenu is a container which allows to
+  order visual content by categories.
+  Categories can be accessed with the tab bar
+--]]
 require("displayItem")
 require("oo")
+
 tabMenu = inheritsFrom(displayItem)
 local tabMenu_mt = {__index = tabMenu}
 
+--- default constructor
 function tabMenu.new()
 	local tm = setmetatable({}, tabMenu_mt)
 	return tm
 end
-
 
 function tabMenu:renderToGroup(group)
 	local data = {}

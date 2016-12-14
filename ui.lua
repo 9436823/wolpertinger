@@ -2,7 +2,8 @@ widget = require("widget")
 require("rasterImageScaleFrame")
 require("tabMenu")
 require("displayItem")
-
+require("slideFrame")
+require("sideFrame")
 ui = {}
 local ui_mt = {__index = ui}
 
@@ -14,9 +15,11 @@ function ui.new(name, map)
 	-- stage layers
 	myUi.background = display.newGroup()
 	myUi.map = display.newGroup()
-	myUi.ui = display.newGroup()
+	myUi.botSliderGroup = display.newGroup()
+  myUi.ui = display.newGroup()
 	myUi.front = display.newGroup()
 	myUi.tabMenuGroup = display.newGroup()
+  
 	-- empty catch all handler
 	local function emptyHandler(event)
 		return true
@@ -139,11 +142,7 @@ function ui.new(name, map)
 	myUi.bottomOverlayGroup:insert(myUi.bottomOverlayDynamicContent)
 	myUi.ui:insert(myUi.bottomOverlayGroup)
 	myUi:toggleBottomOverlay()
-	 --------------------------------------------------------------------
-    -- tabMenu in bottomOverlay
-    --------------------------------------------------------------------
-    local tm = tabMenu.new()
-    tm:renderToGroup(myUi.bottomOverlayGroup)
+	 
 	--------------------------------------------------------------------
     -- scene background
     --------------------------------------------------------------------
@@ -152,7 +151,36 @@ function ui.new(name, map)
     bg.anchorY=0
     bg:setFillColor(.1,.1,.1,1)
     myUi.background:insert(bg)
+  --------------------------------------------------------------------
+  -- slider frame
+  --------------------------------------------------------------------
 
+  local mySlideFrame = slideFrame.new("bot")
+  local dummy = display.newRect(0, 0,  display.actualContentWidth, display.actualContentHeight * 0.4)
+  dummy.isVisible = false
+  myUi.botSliderGroup:insert(dummy)
+  myUi.botSliderGroup:translate(0, display.actualContentHeight - display.actualContentHeight * 0.4 - 150)
+  mySlideFrame:renderToGroup(myUi.botSliderGroup)
+  
+  local options = {
+    left = 200,
+    top = 300,
+    label = "Toggle Slider",
+    onPress = function(event) mySlideFrame:toggle() end
+    }
+  local botSliderButton = widget.newButton(options)
+  --------------------------------------------------------------------
+    -- tabMenu in bottomOverlay
+    --------------------------------------------------------------------
+    local tm = tabMenu.new()
+    
+    tm:renderToGroup(mySlideFrame.dynamicContent)
+  ------------------------------------------------------------------------
+  -- side frame left
+  ------------------------------------------------------------------------
+  local mySideFrame = sideFrame.new()
+  mySideFrame:render()
+  
 	return myUi
 end
 

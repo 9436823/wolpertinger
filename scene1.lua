@@ -31,7 +31,7 @@ function scene:create( event )
     local myUi = ui.new("scene 1 ui", myHexmap)
     
     myHexmap:insertIntoGroup(myUi.map)
-    myHexmap:hide(true)
+    myHexmap:hide(false)
 
     
     local offX = 0
@@ -46,7 +46,7 @@ function scene:create( event )
 
     myMapModel = mapModel.new()
     myMapModel:generateDebugModel()
-    myMapModel:iterateTiles(drawFunc)
+    --myMapModel:iterateTiles(drawFunc)
     
     
     gs = gamestate.new("scene 1", myHexmap, myUi)

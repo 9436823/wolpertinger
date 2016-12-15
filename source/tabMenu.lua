@@ -14,7 +14,7 @@ function tabMenu.new()
 	return tm
 end
 
-function tabMenu:renderToGroup(group)
+function tabMenu:renderToContainer(group)
 	local data = {}
 	data.menuItems = {{id="a", img = "sprites/debug/a.png", content = {{id="a_1", callbacks="olo", img = "sprites/debug/b.png"}, {id="a_2", callbacks="olo2", img = "sprites/debug/c.png" }}},{id="b", img = "sprites/debug/b.png"},{id="c", img = "sprites/debug/c.png"},{id ="d", img = "sprites/debug/d.png"}}
 	

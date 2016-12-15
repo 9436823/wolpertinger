@@ -4,6 +4,8 @@ require("tabMenu")
 require("displayItem")
 require("slideFrame")
 require("sideFrame")
+require("skinnedContainer")
+require("container")
 ui = {}
 local ui_mt = {__index = ui}
 
@@ -19,6 +21,7 @@ function ui.new(name, map)
   myUi.ui = display.newGroup()
 	myUi.front = display.newGroup()
 	myUi.tabMenuGroup = display.newGroup()
+  myUi.scGroup = display.newGroup()
   
 	-- empty catch all handler
 	local function emptyHandler(event)
@@ -156,11 +159,14 @@ function ui.new(name, map)
   --------------------------------------------------------------------
 
   local mySlideFrame = slideFrame.new("bot")
-  local dummy = display.newRect(0, 0,  display.actualContentWidth, display.actualContentHeight * 0.4)
-  dummy.isVisible = false
-  myUi.botSliderGroup:insert(dummy)
-  myUi.botSliderGroup:translate(0, display.actualContentHeight - display.actualContentHeight * 0.4 - 150)
-  mySlideFrame:renderToGroup(myUi.botSliderGroup)
+  --local dummy = display.newRect(0, 0,  display.actualContentWidth, display.actualContentHeight * 0.4)
+  --dummy.isVisible = false
+  
+  local botSliderContainer = container.new(display.actualContentWidth, display.actualContentHeight * 0.4)
+  --myUi.botSliderGroup:insert(dummy)
+  --myUi.botSliderGroup:translate(0, display.actualContentHeight - display.actualContentHeight * 0.4 - 150)
+  botSliderContainer:translate(0, display.actualContentHeight - display.actualContentHeight * 0.4 - 150)
+  mySlideFrame:renderToContainer(botSliderContainer)
   
   local options = {
     left = 200,
@@ -173,14 +179,30 @@ function ui.new(name, map)
     -- tabMenu in bottomOverlay
     --------------------------------------------------------------------
     local tm = tabMenu.new()
-    
-    tm:renderToGroup(mySlideFrame.dynamicContent)
+    tm:renderToContainer(mySlideFrame.dynamicContent)
   ------------------------------------------------------------------------
   -- side frame left
   ------------------------------------------------------------------------
-  local mySideFrame = sideFrame.new()
-  mySideFrame:render()
+  local uiSideFrameContainer = container.new(display.actualContentWidth * 0.6, display.actualContentHeight * 0.5)
   
+  local mySideFrame = sideFrame.new()
+  mySideFrame:renderToContainer(uiSideFrameContainer)
+  
+  local mySkinnedContainer = skinnedContainer.new()
+  mySkinnedContainer:renderToContainer(mySideFrame:getContainer())
+  ------------------------------------------------------------------------
+  --
+  ------------------------------------------------------------------------
+  --local dummy = display.newRect(0, 0, 600, 700)
+  --dummy.anchorX = 0
+  --dummy.anchorY = 0
+  --myUi.scGroup:insert(dummy)
+  --myUi.scGroup:translate(50, 70)
+  
+  
+  --local myContainer = container.new(600, 700)
+  --local mySkinnedContainer = skinnedContainer.new()
+  --mySkinnedContainer:renderToContainer(myContainer)
 	return myUi
 end
 

@@ -16,11 +16,15 @@ function sideFrame.new()
   return sf
 end
 
-function sideFrame:render()
+-- todo don't calculate the dimensions here on the fly
+function sideFrame:renderToContainer(container)
+  
   self.contentGroup = display.newGroup()
   
-  local width = display.actualContentWidth * 0.6
-  local height = display.actualContentHeight * 0.5
+  local width = container.width
+  local height = container.height
+  --local width = display.actualContentWidth * 0.6
+  --local height = display.actualContentHeight * 0.5
   
   -- frame
   local frame = display.newRect(0, 0, width, height)
@@ -105,4 +109,14 @@ function sideFrame:render()
   button:addEventListener("touch", slideFunction)
   self.contentGroup:insert(frame)
   self.contentGroup:insert(button)
+  
+  self.contentContainer = container.new(width, height)
+  self.contentContainer:insertIntoGroup(self.contentGroup)
+  
+  container.group:insert(self.contentGroup)
+end
+
+function sideFrame:getContainer()
+  
+    return self.contentContainer
 end

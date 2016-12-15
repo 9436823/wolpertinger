@@ -17,9 +17,12 @@ function slideFrame.new(position)
 end
 
 --todo add default handelers
-function slideFrame:renderToGroup(group)
+function slideFrame:renderToContainer(container)
   self.isVisible = true
-	local frame = display.newRect(0, 0, group.contentWidth , group.contentHeight)
+  local width = container.width
+  local height = container.height
+  local group = container.group
+	local frame = display.newRect(0, 0, width , height)
 	--frame:addEventListener("touch", emptyHandler)
 	--frame:addEventListener("tap", emptyHandler)
 	frame.anchorX = 0
@@ -29,8 +32,9 @@ function slideFrame:renderToGroup(group)
 	self.contentGroup = display.newGroup()
 	self.contentGroup:insert(frame)
 	
+  --todo remove dummy
 	self.dynamicContent = display.newGroup()
-  local dummy = display.newRect(0, 0, group.contentWidth , group.contentHeight)
+  local dummy = display.newRect(0, 0, width , height)
   dummy.isVisible = false
   self.dynamicContent:insert(dummy)
   
